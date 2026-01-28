@@ -1,0 +1,18 @@
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+}
+
+.main {
+  text-align: center; 
+  display: flex; 
+  flex-direction: column
+}
+
+.mainText{
+  text-align: left;
+  margin: 0;
+}
+

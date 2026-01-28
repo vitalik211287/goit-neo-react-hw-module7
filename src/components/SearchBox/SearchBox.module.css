@@ -1,0 +1,20 @@
+.form {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 250px;
+}
+
+.field {
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+.formBtn {
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 400;
+}
