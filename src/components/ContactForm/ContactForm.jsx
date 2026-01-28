@@ -1,68 +1,56 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import css from "./ContactForm.module.css";
-import * as yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
-
-const validationSchema = yup.object().shape({
-  name: yup.string().min(3).max(50).required(),
-  number: yup.string().min(3).max(50).required(),
-});
+import { addContact } from "../../redux/contactsOps";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
+
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const trimmedName = name.trim();
+    const trimmedNumber = number.trim();
+    if (!trimmedName || !trimmedNumber) return;
+
+    dispatch(addContact({ name: trimmedName, number: trimmedNumber }));
+
+    setName("");
+    setNumber("");
+  };
 
   return (
-    <Formik
-      initialValues={{ name: "", number: "" }}
-      validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        const name = values.name.trim();
-        const number = values.number.trim();
-
-        const exists = contacts.some(
-          (c) => c.name.toLowerCase() === name.toLowerCase(),
-        );
-        if (exists) {
-          alert(`${name} is already in contacts`);
-          return;
-        }
-
-        dispatch(addContact({ name, number }));
-        actions.resetForm();
-      }}
-    >
-      <Form className={css.form}>
-        <label htmlFor="name" className={css.label}>
-          Name
-        </label>
-        <Field
-          id="name"
-          name="name"
+    <form className={css.form} onSubmit={handleSubmit}>
+      <label className={css.label}>
+        Name
+        <input
+          className={css.field}
           type="text"
-          autoComplete="name"
-          className={css.field}
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
-        <ErrorMessage component="span" name="name" className={css.error} />
+      </label>
 
-        <label htmlFor="number" className={css.label}>
-          Number
-        </label>
-        <Field
-          id="number"
-          name="number"
+      <label className={css.label}>
+        Number
+        <input
+          className={css.field}
           type="tel"
-          autoComplete="tel"
-          inputMode="tel"
-          className={css.field}
+          name="number"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          required
         />
-        <ErrorMessage component="span" name="number" className={css.error} />
+      </label>
 
-        <button type="submit" className={css.formBtn}>
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+      <button className={css.formBtn} type="submit">
+        Add contact
+      </button>
+    </form>
   );
 }

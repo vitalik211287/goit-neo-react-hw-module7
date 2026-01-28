@@ -1,18 +1,25 @@
 #root {
   max-width: 1200px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 2rem;
-
 }
 
 .main {
-  text-align: center; 
-  display: flex; 
-  flex-direction: column
+  /* text-align: center;  */
+  display: flex;
+  flex-direction: column;
 }
 
-.mainText{
+.mainText {
   text-align: left;
   margin: 0;
 }
 
+.error {
+  display: inline-block;
+  margin: 0 auto;
+  color: red;
+  /* font-size: 12px; */
+  /* margin-top: -8px; */
+  margin-bottom: 8px;
+}
