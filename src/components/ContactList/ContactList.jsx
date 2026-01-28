@@ -9,9 +9,7 @@ export default function ContactList() {
   return (
     <ul className={css.list}>
       {contacts.map((contact) => (
-        <li className={css.item} key={contact.id}>
-          <Contact contact={contact} />
-        </li>
+        <Contact key={contact.id} contact={contact} />
       ))}
     </ul>
   );

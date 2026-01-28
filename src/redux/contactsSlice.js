@@ -12,7 +12,6 @@ const initialState = {
 const contactsSlice = createSlice({
   name: "contacts",
   initialState,
-  reducers: undefined,
   extraReducers: (builder) => {
     builder
       // fetch

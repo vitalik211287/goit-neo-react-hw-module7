@@ -1,33 +1,76 @@
+.item {
+  background: #fff;
+  border: 1px solid #e6e8ec;
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.10);
+}
+
 .contactWrapper {
-  padding: 15px;
-  min-width: 250px;
-  width: fit-content;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid black;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  text-align: left;
+  justify-content: space-between;
+  gap: 14px;
 }
 
 .contactInfoWrapper {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
-.userIcon {
+.text {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userIcon,
+.phoneIcon {
   width: 18px;
   height: 18px;
-  margin-right: 5px;
+  flex: 0 0 18px;
+  opacity: 0.9;
 }
 
-.phoneIcon {
-  width: 16px;
-  height: 16px;
-   margin-right: 5px;
+/* Стилізуємо кнопку Delete без зміни JSX */
+.contactWrapper button {
+  appearance: none;
+  border: 1px solid #e6e8ec;
+  background: #f9fafb;
+  color: #111827;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease,
+    transform 120ms ease;
 }
 
-.text{
-    margin-bottom: 5px;
-    font-weight: 500;
+.contactWrapper button:hover {
+  background: #f3f4f6;
+  border-color: #d0d5dd;
+}
+
+.contactWrapper button:active {
+  transform: translateY(1px);
+}
+
+.contactWrapper button:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
 }

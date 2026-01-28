@@ -7,19 +7,20 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [phone, setPhone] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const trimmedName = name.trim();
-    const trimmedNumber = number.trim();
-    if (!trimmedName || !trimmedNumber) return;
+    const trimmedPhone = phone.trim();
 
-    dispatch(addContact({ name: trimmedName, number: trimmedNumber }));
+    if (!trimmedName || !trimmedPhone) return;
+
+    dispatch(addContact({ name: trimmedName, phone: trimmedPhone }));
 
     setName("");
-    setNumber("");
+    setPhone("");
   };
 
   return (
@@ -41,9 +42,9 @@ export default function ContactForm() {
         <input
           className={css.field}
           type="tel"
-          name="number"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          name="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           required
         />
       </label>
